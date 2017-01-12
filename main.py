@@ -3,7 +3,7 @@ import api
 
 def main():
 	print("Hello, world!")
-	files.save("files/teste.txt", "olar")
+	files.save("dumps/teste.txt", "olar")
 	return
 
 if __name__ == '__main__':
