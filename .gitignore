@@ -1,4 +1,4 @@
 *.pyc
 app_list.json
-/files
+/files/*
 

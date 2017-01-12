@@ -1,9 +1,9 @@
-from save import Save
-from api import Api
+import files
+import api
 
 def main():
 	print("Hello, world!")
-	Save().save("teste", "olar")
+	files.save("files/teste.txt", "olar")
 	return
 
 if __name__ == '__main__':
