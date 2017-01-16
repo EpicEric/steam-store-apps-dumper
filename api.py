@@ -20,13 +20,13 @@ def __prettify_json(input):
 def get_app_list():
 	url = "http://api.steampowered.com/ISteamApps/GetAppList/v0001/"
 	string = __get_request(url)
-	dict = json.dumps(string)
+	dict = json.loads(string)
 	array = [str(e['appid']) for e in dict['applist']['apps']['app']]
 	return array
 
 def get_app_details(appid=None):
 	if appid is None:
-		return ""
+		raise Exception('Unknown appid')
 	url = "http://store.steampowered.com/api/appdetails/?cc=us&l=english&filters=basic,developers,publishers,price_overview,platforms,metacritic,categories,genres,recommendations,achievements,release_date&appids=" + str(appid)
 	string = __get_request(url)
 	content = __prettify_json(string)
