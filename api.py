@@ -29,13 +29,13 @@ def __prettify_json(input):
 
 def get_app_list():
 	"""
-	Returns an array of strings of all app IDs from the
-	Steam Store API.
+	Returns an array of dicts represeting the JSON of strings
+	of all app IDs from the Steam Store API.
 	"""
 	url = "http://api.steampowered.com/ISteamApps/GetAppList/v0001/"
 	string = __get_request(url)
 	dict = json.loads(string)
-	array = [str(e['appid']) for e in dict['applist']['apps']['app']]
+	array = dict['applist']['apps']['app']
 	return array
 
 
@@ -45,7 +45,7 @@ def get_app_details(appid=None):
 	information regarding the provided app ID number.
 	"""
 	if appid is None:
-		raise Exception('Unknown appid')
+		raise Exception('appid was not provided')
 	url = "http://store.steampowered.com/api/appdetails/?cc=us&l=english&filters=basic,developers,publishers,price_overview,platforms,metacritic,categories,genres,recommendations,achievements,release_date&appids=" + str(appid)
 	string = __get_request(url)
 	content = __prettify_json(string)
