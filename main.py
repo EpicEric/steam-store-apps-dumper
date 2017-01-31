@@ -24,15 +24,16 @@ def main():
 	if app_id is None:
 		print("\nNo new apps.")
 		return
-	print("Done. Starting from app {}.".format(appid))
+	print("Done. Starting from app {}.".format(app_id))
 	
 	print("Hit CTRL-C to stop this program at any time.")
 	
 	while (app_id is not None):
-		print("{}: Saving...".format(appid)),
+		print("{}: Saving...".format(app_id)),
 		save_app(app_id)
 		time.sleep(1.5) # API max request time
 		print("Done")
+		app_id = next_app_id(app_id, array)
 
 
 def next_app_id(app_id, array):
@@ -63,7 +64,7 @@ def save_app(app_id):
 		print('API error for app %s: %s' % (str_app_id, repr(error)))
 		return
 	try:
-		files.save("%s/%s.txt" % (DUMPS_DIR, str_app_id), content)
+		files.save("{}/{}.txt" .format(DUMPS_DIR, str_app_id), content)
 	except Exception as error:
 		print('IO error for app %s: %s' % (str_app_id, repr(error)))
 		return

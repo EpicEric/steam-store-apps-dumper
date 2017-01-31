@@ -25,6 +25,7 @@ def save(name, content):
 	to be saved. A file with the appropriate name will be
 	created and written to.
 	"""
-	with open(name, 'w+') as f:
-		f.write(content)
-		f.write("\n")
+	if content:
+		with open(name, 'w+') as f:
+			f.write(content)
+			f.write("\n")

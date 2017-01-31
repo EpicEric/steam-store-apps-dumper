@@ -22,6 +22,8 @@ def __prettify_json(input):
 	"""
 	try:
 		parsed = json.loads(input, object_pairs_hook=OrderedDict)
+		if not parsed[list(parsed)[0]]['success']:
+			return ""
 		return json.dumps(parsed, indent=4)
 	except:
 		return input
