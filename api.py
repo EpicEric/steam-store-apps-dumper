@@ -8,11 +8,8 @@ def __get_request(url):
 	Makes a GET request to the specified URL and
 	returns the string obtained from the response.
 	"""
-	try:
-		response = urllib2.urlopen(url)
-		return response.read()
-	except:
-		raise Exception("Could not load '%s'." % str(url))
+	response = urllib2.urlopen(url)
+	return response.read()
 
 
 def __prettify_json(input):

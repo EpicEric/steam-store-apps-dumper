@@ -33,7 +33,7 @@ def main():
 	while (app_id is not None):
 		print("{}: Saving...".format(app_id)),
 		save_app(app_id)
-		time.sleep(1.5) # API max request time
+		time.sleep(1.2) # API max request time
 		print("Done")
 		app_id = next_app_id(app_id, array)
 
@@ -62,16 +62,8 @@ def save_app(app_id):
 	saves it to the file named after it.
 	"""
 	str_app_id = str(app_id)
-	try:
-		content = api.get_app_details(str_app_id)
-	except Exception as error:
-		print('API error for app %s: %s' % (str_app_id, repr(error)))
-		return
-	try:
-		files.save("{}/{}.txt" .format(DUMPS_DIR, str_app_id), content)
-	except Exception as error:
-		print('IO error for app %s: %s' % (str_app_id, repr(error)))
-		return
+	content = api.get_app_details(str_app_id)
+	files.save("{}/{}.txt" .format(DUMPS_DIR, str_app_id), content)
 
 
 # Calls the main function
