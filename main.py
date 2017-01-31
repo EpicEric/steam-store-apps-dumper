@@ -5,6 +5,7 @@ import api
 
 
 DUMPS_DIR = "dumps"
+index = 0
 
 
 def main():
@@ -22,11 +23,12 @@ def main():
 	last_app_id = files.get_app_id(DUMPS_DIR)
 	app_id = next_app_id(last_app_id, array)
 	if app_id is None:
-		print("\nNo new apps.")
+		print("No new apps. Ending program...")
 		return
-	print("Done. Starting from app {}.".format(app_id))
-	
-	print("Hit CTRL-C to stop this program at any time.")
+	print("Done.")
+
+	print("\nStarting from app {}.".format(app_id))
+	print("Hit CTRL-C to stop this program at any time.\n")
 	
 	while (app_id is not None):
 		print("{}: Saving...".format(app_id)),
@@ -46,9 +48,11 @@ def next_app_id(app_id, array):
 		return None
 	if app_id == 0:
 		return array[0]['appid']
-	for a in array:
-		if a['appid'] > app_id:
-			return a['appid']
+	global index
+	for i, v in enumerate(array[index::]):
+		if v['appid'] > app_id:
+			index = index + i + 1
+			return v['appid']
 	return None
 
 
